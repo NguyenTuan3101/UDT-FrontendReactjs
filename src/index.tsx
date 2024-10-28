@@ -1,4 +1,4 @@
-require('file-loader?name=[name].[ext]!./index.html');
+import 'file-loader?name=[name].[ext]!./index.html';
 import React from 'react';
 import App from './App';
 import { createRoot } from 'react-dom/client';
