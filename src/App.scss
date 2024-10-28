@@ -1,0 +1,84 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.calculator {
+  width: 300px;
+  background-color: #4f4f4f;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header for the buttons on the top left */
+.calculator-header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #3b3b3b;
+}
+
+.button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+.red {
+  background-color: #ff5f57;
+}
+.yellow {
+  background-color: #ffbd2e;
+}
+.green {
+  background-color: #28c940;
+}
+
+/* Display screen styling */
+.display {
+  font-size: 2.5em;
+  color: white;
+  background-color: #4f4f4f;
+  padding: 20px;
+  text-align: right;
+}
+
+/* Calculator grid layout */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+}
+
+.buttons button {
+  padding: 20px;
+  font-size: 1.5em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Button styling */
+.btn-dark {
+  background-color: #737373;
+  color: white;
+}
+.btn-light {
+  background-color: #d4d4d2;
+  color: black;
+}
+.btn-orange {
+  background-color: #ff9500;
+  color: white;
+}
+
+/* Full-width button styling for zero */
+.btn-zero {
+  grid-column: span 2;
+}

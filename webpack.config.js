@@ -14,6 +14,7 @@ export default {
   },
   devServer: {
     port: 3000,
+    historyApiFallback: true,
     static: {
       watch: true,
     },
