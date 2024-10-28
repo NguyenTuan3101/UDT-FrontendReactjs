@@ -8,9 +8,5 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src",
-    "routes",
-    "store"
-  ]
+  "include": ["src", "routes", "store"]
 }
