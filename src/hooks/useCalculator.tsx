@@ -5,7 +5,9 @@ import History from "../interface/history";
 
 export const useCalculator = () => {
   const [displayValue, setDisplayValue] = useState("0");
-  const [historyCalculator, setHistoryCalculator] = useState<{ id: number; entry: string }[]>([]);
+  const [historyCalculator, setHistoryCalculator] = useState<
+    { id: number; entry: string }[]
+  >([]);
   const [nextId, setNextId] = useState(1); // Trạng thái cho ID tiếp theo
 
   const handleButtonClick = (value: string) => {
@@ -91,7 +93,11 @@ export const useCalculator = () => {
       }));
 
       setHistoryCalculator(historyWithId);
-      setNextId(historyWithId.length > 0 ? Math.max(...historyWithId.map(e => e.id)) + 1 : 1); // Cập nhật ID tiếp theo
+      setNextId(
+        historyWithId.length > 0
+          ? Math.max(...historyWithId.map((e) => e.id)) + 1
+          : 1,
+      ); // Cập nhật ID tiếp theo
     } catch (error) {
       console.error("Error loading history:", error);
     }
