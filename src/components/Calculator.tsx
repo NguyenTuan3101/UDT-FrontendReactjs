@@ -4,6 +4,7 @@ import { useCalculator } from "../hooks/useCalculator";
 import Display from "./Display";
 import Button from "./Button";
 import "../styles/Calculator.scss";
+
 const Calculator = () => {
   const { displayValue, handleButtonClick } = useCalculator();
   const displayRef = useRef<HTMLDivElement>(null);
