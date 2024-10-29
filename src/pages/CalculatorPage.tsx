@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { evaluate } from "mathjs";
-const Calculator = () => {
+const CalculatorPage = () => {
   const [displayValue, setDisplayValue] = useState("0");
   const [history, setHistory] = useState<string[]>([]);
   const displayRef = useRef<HTMLDivElement>(null);
@@ -143,4 +143,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default CalculatorPage;
