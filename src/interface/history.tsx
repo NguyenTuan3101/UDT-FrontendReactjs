@@ -1,5 +1,5 @@
 interface History {
-  id: number;
+  id: string;
   date: string;
   time: string;
   calculator: string;

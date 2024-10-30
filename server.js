@@ -46,12 +46,10 @@ app.post("/save-history", (req, res) => {
     // Kiểm tra nếu id đã tồn tại
     const existingEntry = historyArray.find((entry) => entry.id === id);
     if (existingEntry) {
-      return res
-        .status(400)
-        .json({
-          code: 400,
-          message: "History entry with this ID already exists.",
-        });
+      return res.status(400).json({
+        code: 400,
+        message: "History entry with this ID already exists.",
+      });
     }
 
     // Thêm mục lịch sử mới vào mảng
@@ -64,13 +62,11 @@ app.post("/save-history", (req, res) => {
           .status(500)
           .json({ code: 500, message: "Error saving history" });
       }
-      res
-        .status(200)
-        .json({
-          code: 200,
-          message: "History saved successfully",
-          history: historyEntry,
-        });
+      res.status(200).json({
+        code: 200,
+        message: "History saved successfully",
+        history: historyEntry,
+      });
     });
   });
 });
@@ -105,12 +101,10 @@ app.get("/load-history", (req, res) => {
       // Bọc mảng history trong một đối tượng
       res.status(200).json({ code: 200, history: historyEntries });
     } catch (parseError) {
-      return res
-        .status(500)
-        .json({
-          code: 500,
-          message: "Error parsing history data: " + parseError.message,
-        });
+      return res.status(500).json({
+        code: 500,
+        message: "Error parsing history data: " + parseError.message,
+      });
     }
   });
 });

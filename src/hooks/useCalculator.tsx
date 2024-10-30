@@ -1,14 +1,11 @@
 // src/hooks/useCalculator.ts
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { evaluate } from "mathjs";
 import History from "../interface/history";
+import historyApi from "../api/historyApi";
 
 export const useCalculator = () => {
   const [displayValue, setDisplayValue] = useState("0");
-  const [historyCalculator, setHistoryCalculator] = useState<
-    { id: number; entry: string }[]
-  >([]);
-  const [nextId, setNextId] = useState(1); // Trạng thái cho ID tiếp theo
 
   const handleButtonClick = (value: string) => {
     if (value === "AC") {
@@ -30,27 +27,19 @@ export const useCalculator = () => {
         const now = new Date();
         const date = now.toLocaleDateString();
         const time = now.toLocaleTimeString();
+        const historyId = `${date}|${time}`;
 
         // Create the formatted history entry
         const History = {
-          id: nextId, // Sử dụng ID tiếp theo
+          id: historyId, // Sử dụng ID tiếp theo
           date: date,
           time: time,
           calculator: `${displayValue} = ${roundedResult}`,
         };
-
-        // Thêm mục lịch sử vào trạng thái
-        setHistoryCalculator((prev) => [
-          ...prev,
-          { id: nextId, entry: JSON.stringify(History) },
-        ]);
         setDisplayValue(String(roundedResult));
 
         // Lưu lịch sử vào tệp
         saveHistoryToFile(History);
-
-        // Tăng ID tiếp theo
-        setNextId((prev) => prev + 1);
       } catch {
         setDisplayValue("Error");
       }
@@ -67,52 +56,19 @@ export const useCalculator = () => {
     }
   };
 
-  const saveHistoryToFile = async (History: History) => {
+  const saveHistoryToFile = async (history: History) => {
     try {
-      await fetch("http://localhost:5000/save-history", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(History),
-      });
+      const response = await historyApi.saveHistory(history);
+      console.log(response);
     } catch (error) {
-      console.error("Error saving history:", error);
+      console.log("Error saving history:", error);
     }
   };
-
-  const loadHistoryFromFile = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/load-history");
-      const data: History[] = await response.json(); // Specify the expected type here
-
-      // Chuyển đổi dữ liệu thành dạng có ID
-      const historyWithId = data.map((entry: History) => ({
-        id: entry.id, // Sử dụng ID từ mục lịch sử
-        entry: entry.calculator, // Lưu giá trị calculator cho entry
-      }));
-
-      setHistoryCalculator(historyWithId);
-      setNextId(
-        historyWithId.length > 0
-          ? Math.max(...historyWithId.map((e) => e.id)) + 1
-          : 1,
-      ); // Cập nhật ID tiếp theo
-    } catch (error) {
-      console.error("Error loading history:", error);
-    }
-  };
-
-  useEffect(() => {
-    loadHistoryFromFile(); // Load history when the component mounts
-  }, []);
 
   return {
     displayValue,
     setDisplayValue,
-    historyCalculator,
     handleButtonClick,
     saveHistoryToFile,
-    loadHistoryFromFile,
   };
 };
