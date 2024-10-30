@@ -6,14 +6,11 @@ import Button from "./Button";
 import "../styles/Calculator.scss";
 
 const Calculator = () => {
-  const { displayValue, handleButtonClick } = useCalculator();
+  const { displayValue, setDisplayValue, handleButtonClick } = useCalculator();
   const displayRef = useRef<HTMLDivElement>(null);
 
-  const handleDisplayClick = () => {
-    if (displayRef.current) {
-      displayRef.current.contentEditable = "true";
-      displayRef.current.focus();
-    }
+  const handleValueChange = (value: string) => {
+    setDisplayValue(value); // Update the display value
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -40,8 +37,7 @@ const Calculator = () => {
         <div className="button green"></div>
       </div>
       <Display
-        displayValue={displayValue}
-        onClick={handleDisplayClick}
+        displayValue={displayValue} onValueChange={handleValueChange}
         ref={displayRef}
       />
       <div className="buttons">

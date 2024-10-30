@@ -38,6 +38,16 @@
     text-align: right;
   }
 
+  .display-input {
+    width: 100%;
+    font-size: 1.0em;
+    color: white;
+    background-color: #4f4f4f;
+    text-align: right;
+    border: none;
+    outline: none;
+  }
+
   .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
