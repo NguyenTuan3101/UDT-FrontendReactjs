@@ -26,7 +26,7 @@ const HistoryPage = () => {
     getHistory();
     const interval = setInterval(() => {
       getHistory();
-    }, 30000);
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
 

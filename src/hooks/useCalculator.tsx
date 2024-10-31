@@ -64,8 +64,7 @@ export const useCalculator = () => {
 
   const saveHistoryToFile = async (history: History) => {
     try {
-      const response = await historyApi.saveHistory(history);
-      console.log(response);
+      await historyApi.saveHistory(history);
     } catch (error) {
       console.log("Error saving history:", error);
     }
