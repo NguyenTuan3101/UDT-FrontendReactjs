@@ -6,7 +6,6 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ value, onClick }) => {
-  // Xác định className dựa trên giá trị của value
   const getClassName = () => {
     if (["AC", "C", "+/-", "%"].includes(value)) return "btn-dark";
     if (["÷", "×", "+", "-", "="].includes(value)) return "btn-orange";
