@@ -37,7 +37,8 @@ const Calculator = () => {
         <div className="button green"></div>
       </div>
       <Display
-        displayValue={displayValue} onValueChange={handleValueChange}
+        displayValue={displayValue}
+        onValueChange={handleValueChange}
         ref={displayRef}
       />
       <div className="buttons">

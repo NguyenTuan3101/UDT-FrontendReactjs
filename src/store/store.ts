@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 // Example slice
 const counterSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState: { value: 0 },
   reducers: {
     increment: (state) => {
