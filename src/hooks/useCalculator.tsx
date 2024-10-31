@@ -12,6 +12,12 @@ export const useCalculator = () => {
       setDisplayValue("0");
     } else if (value === "C") {
       setDisplayValue(displayValue.slice(0, -1) || "0");
+    } else if (value === "+/-") {
+      if (displayValue !== "0") {
+        setDisplayValue((prev) => {
+          return prev.startsWith("-") ? prev.slice(1) : `-${prev}`;
+        });
+      }
     } else if (value === "=") {
       try {
         let expression = displayValue
@@ -31,14 +37,14 @@ export const useCalculator = () => {
 
         // Create the formatted history entry
         const History = {
-          id: historyId, // Sử dụng ID tiếp theo
+          id: historyId,
           date: date,
           time: time,
           calculator: `${displayValue} = ${roundedResult}`,
         };
         setDisplayValue(String(roundedResult));
 
-        // Lưu lịch sử vào tệp
+        // Save history to file
         saveHistoryToFile(History);
       } catch {
         setDisplayValue("Error");

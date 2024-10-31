@@ -41,8 +41,12 @@ const Calculator = () => {
         ref={displayRef}
       />
       <div className="buttons">
+        <Button
+          key="AC"
+          value={displayValue === "0" ? "AC" : "C"}
+          onClick={() => handleButtonClick(displayValue === "0" ? "AC" : "C")}
+        />
         {[
-          "AC",
           "+/-",
           "%",
           "÷",
